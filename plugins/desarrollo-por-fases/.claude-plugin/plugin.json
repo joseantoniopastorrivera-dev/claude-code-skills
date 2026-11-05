@@ -1,0 +1,10 @@
+{
+  "name": "desarrollo-por-fases",
+  "version": "1.0.0",
+  "description": "Arranca cada fase de una hoja de ruta (rama, copia de seguridad, línea base de tests y plan aprobado) y la cierra con un plan de pruebas imprimible.",
+  "author": {
+    "name": "José Antonio Pastor Rivera"
+  },
+  "license": "MIT",
+  "keywords": ["hoja-de-ruta", "fases", "plan-de-pruebas", "git"]
+}
