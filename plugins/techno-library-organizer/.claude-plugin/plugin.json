@@ -1,0 +1,10 @@
+{
+  "name": "techno-library-organizer",
+  "version": "1.0.0",
+  "description": "Limpia y ordena una biblioteca musical de DJ: duplicados, descargas rotas y carpetas convertidas en playlists, sin perder el historial de listas.",
+  "author": {
+    "name": "José Antonio Pastor Rivera"
+  },
+  "license": "MIT",
+  "keywords": ["musica", "dj", "duplicados", "playlists"]
+}

@@ -59,6 +59,14 @@ python -m pytest
 
 Lo que se aprendió por el camino (las etiquetas pierden el nombre del remix, artistas con "/" en el nombre, un "remix" que en realidad era la versión original…) está en [`docs/decisiones.md`](docs/decisiones.md).
 
+### Como skill de Claude Code
+
+El procedimiento completo está en la skill [`organizar-biblioteca-musical`](skills/organizar-biblioteca-musical/SKILL.md). Para instalarla:
+
+```
+/plugin install techno-library-organizer --marketplace joseantoniopastorrivera-dev/claude-code-skills
+```
+
 ### Tecnologías
 
 Python 3.8+ · [mutagen](https://github.com/quodlibet/mutagen) · pytest

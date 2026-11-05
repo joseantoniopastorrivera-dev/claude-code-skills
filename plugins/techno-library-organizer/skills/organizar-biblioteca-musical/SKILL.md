@@ -7,7 +7,7 @@ description: Usar al limpiar o reorganizar una biblioteca de música de DJ: dupl
 
 Procedimiento para quitar duplicados, detectar descargas rotas y pasar de "una carpeta por lista" a **una biblioteca única + playlists**, sin perder en qué listas estuvo cada canción.
 
-Scripts de referencia: este repositorio (`src/inventario.py`, `src/duplicados.py`, `src/organizar.py`). Requieren `pip install mutagen`.
+Scripts de referencia: la carpeta `src/` de este plugin (`../../src/` desde esta carpeta: `inventario.py`, `duplicados.py`, `organizar.py`). Requieren `pip install mutagen`.
 
 ## Reglas que no se saltan
 
