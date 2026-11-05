@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "claude-code-skills",
+  "description": "Skills creadas con Claude Code durante DAM: organizar bibliotecas musicales, desarrollar por fases y normalizar nombres de archivos.",
+  "owner": {
+    "name": "José Antonio Pastor Rivera"
+  },
+  "plugins": [
+    {
+      "name": "techno-library-organizer",
+      "description": "Limpia y ordena una biblioteca musical de DJ: duplicados, descargas rotas y playlists.",
+      "source": "./plugins/techno-library-organizer",
+      "category": "productivity"
+    },
+    {
+      "name": "desarrollo-por-fases",
+      "description": "Arranca cada fase de una hoja de ruta y la cierra con un plan de pruebas imprimible.",
+      "source": "./plugins/desarrollo-por-fases",
+      "category": "development"
+    },
+    {
+      "name": "ordenar-archivos",
+      "description": "Renombra documentos y carpetas de repos git a minúsculas con guiones, conservando el historial.",
+      "source": "./plugins/ordenar-archivos",
+      "category": "productivity"
+    }
+  ]
+}
