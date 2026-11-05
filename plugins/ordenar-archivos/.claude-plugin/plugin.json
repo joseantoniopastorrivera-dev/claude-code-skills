@@ -1,0 +1,10 @@
+{
+  "name": "ordenar-archivos",
+  "version": "1.0.0",
+  "description": "Renombra documentos y carpetas de uno o varios repos git a minúsculas con guiones, simulando antes, conservando el historial y actualizando las rutas citadas.",
+  "author": {
+    "name": "José Antonio Pastor Rivera"
+  },
+  "license": "MIT",
+  "keywords": ["renombrar", "git", "organizar", "documentos"]
+}
