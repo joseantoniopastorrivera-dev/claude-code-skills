@@ -20,7 +20,7 @@
     },
     {
       "name": "ordenar-archivos",
-      "description": "Renombra documentos y carpetas de repos git a minúsculas con guiones, conservando el historial.",
+      "description": "Renombra documentos y carpetas de repos git a minúsculas con guiones y clasifica las descargas de clase en su asignatura.",
       "source": "./plugins/ordenar-archivos",
       "category": "productivity"
     }

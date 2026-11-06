@@ -1,7 +1,7 @@
 {
   "name": "ordenar-archivos",
-  "version": "1.0.0",
-  "description": "Renombra documentos y carpetas de uno o varios repos git a minúsculas con guiones, simulando antes, conservando el historial y actualizando las rutas citadas.",
+  "version": "1.1.0",
+  "description": "Renombra documentos y carpetas de uno o varios repos git a minúsculas con guiones, simulando antes, conservando el historial y actualizando las rutas citadas. Clasifica los documentos descargados en la carpeta de su UT, dentro del repo de cada asignatura.",
   "author": {
     "name": "José Antonio Pastor Rivera"
   },
