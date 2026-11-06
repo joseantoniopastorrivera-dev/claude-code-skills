@@ -19,11 +19,13 @@ Estados del plan:
     dudoso     ninguna asignatura, varias empatadas o sin UT clara: decide Claude o el usuario
     ut-nueva   asignatura clara pero no existe carpeta para esa UT: créala y vuelve a simular
 "nombre_opaco": true marca nombres que no dicen qué es el documento (worksheet_524271.pdf).
-    duplicado  ya hay un archivo idéntico (mismo hash) en algún repo, con cualquier nombre
+    duplicado  ya hay un archivo idéntico (mismo hash) en algún repo, con cualquier nombre,
+               o es igual que otra descarga del mismo plan (se queda la mejor clasificada)
     colision   el destino existe con otro contenido, u otra descarga va al mismo sitio
 Para resolver una entrada a mano, rellena "destino" (ruta absoluta) y pon "estado": "seguro".
 """
 import argparse
+import collections
 import hashlib
 import json
 import os
@@ -167,6 +169,30 @@ def marcar_ya_guardados(entradas, dev):
             e['motivo'] = f'ya está en {os.path.relpath(copia, dev)}'
 
 
+def marcar_repetidas(entradas, origen):
+    """Descargas idénticas entre sí: se queda una y las demás son duplicado de esa.
+
+    Se queda la que ya tiene destino; a igualdad, la que venía en una carpeta de asignatura; y si
+    no, la de nombre más corto ('Libro.pdf' antes que 'Libro (1).pdf', que es la copia del navegador).
+    Así no acaban dos copias en el repo ni se pregunta por una suelta que ya está resuelta.
+    """
+    por_tamano = collections.defaultdict(list)
+    for e in entradas:
+        if e['estado'] != 'duplicado':
+            por_tamano[os.path.getsize(e['origen'])].append(e)
+    for grupo in (g for g in por_tamano.values() if len(g) > 1):
+        por_hash = collections.defaultdict(list)
+        for e in grupo:
+            por_hash[hash_de(e['origen'])].append(e)
+        for iguales in (g for g in por_hash.values() if len(g) > 1):
+            iguales.sort(key=lambda e: (e['estado'] != 'seguro', e['repo'] is None,
+                                        len(os.path.basename(e['origen']))))
+            principal = iguales[0]
+            for e in iguales[1:]:
+                e['estado'], e['destino'], e['duplicado_de'] = 'duplicado', None, principal['origen']
+                e['motivo'] = f'igual que la descarga {os.path.relpath(principal["origen"], origen)}'
+
+
 def planificar(origen, dev, tabla):
     docs, ignoradas = documentos(origen, tabla)
     entradas = [clasificar(ruta, sub, pista, dev, tabla) for ruta, sub, pista in docs]
@@ -175,6 +201,7 @@ def planificar(origen, dev, tabla):
     # plan si ya está guardada en un repo, para poder mandarla a la Papelera como duplicado.
     sueltas = {ruta for ruta, _, pista in docs if not pista and os.path.splitext(ruta)[1].lower() in IMAGENES}
     entradas = [e for e in entradas if e['origen'] not in sueltas or e['estado'] == 'duplicado']
+    marcar_repetidas(entradas, origen)
     revisar_destinos(entradas)
     return entradas, ignoradas
 
@@ -264,10 +291,14 @@ def papelera(plan, origen):
         sys.exit('--papelera solo funciona en Windows')
     with open(plan, encoding='utf-8') as fh:
         entradas = json.load(fh)
+    # Si la copia era otra descarga y ya se movió con --ejecutar, ahora está en su destino
+    movida_a = {e['origen']: e['destino'] for e in entradas if e['estado'] == 'seguro'}
     for e in entradas:
         if e['estado'] != 'duplicado':
             continue
         archivo, copia = os.path.relpath(e['origen'], origen), e.get('duplicado_de')
+        if copia and not os.path.isfile(copia) and copia in movida_a:
+            copia = movida_a[copia]
         # Se vuelve a comprobar ahora: entre simular y ejecutar pudo cambiar cualquiera de los dos
         if not (copia and os.path.isfile(copia) and os.path.isfile(e['origen'])
                 and hash_de(copia) == hash_de(e['origen'])):
