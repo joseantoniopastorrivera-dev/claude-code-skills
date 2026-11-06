@@ -10,7 +10,9 @@ Opciones: --origen (por defecto ~/Downloads), --dev (raíz de los repos, por def
 
 Origen: los documentos sueltos se clasifican por su nombre. Una subcarpeta cuyo nombre indica
 una asignatura ("ut2 ingles") se recorre entera y su nombre manda sobre el de cada archivo;
-sus subcarpetas se conservan dentro de la UT. Las demás subcarpetas se ignoran.
+sus subcarpetas se conservan dentro de la UT, y también se clasifican sus imágenes (png, jpg…).
+Las demás subcarpetas se ignoran. Las imágenes sueltas nunca se clasifican: solo aparecen
+si ya están guardadas en un repo, como duplicado.
 
 Estados del plan:
     seguro     destino decidido; --ejecutar lo moverá
@@ -40,6 +42,8 @@ ASIGNATURAS = os.path.join(AQUI, '..', 'skills', 'clasificar-descargas', 'asigna
 UT_EN_NOMBRE = re.compile(r'(?:^|-)(?:ut|tema|unidad|unit|ra|session|sesion)-?0*(\d+)(?=[a-z]?(?:-|$))')
 # Números de UT en el nombre de una carpeta de repo: ut02-…, ut1-…, ut02-ut03-… (cubre dos), ra4a-…, session-1-…
 UT_EN_CARPETA = re.compile(r'(?:^|-)(?:ut|ra|session|sesion)-?0*(\d+)(?=[a-z]?(?:-|$))')
+# Imágenes: solo se clasifican dentro de una subcarpeta con nombre de asignatura
+IMAGENES = {'.png', '.jpg', '.jpeg', '.webp', '.gif'}
 # Carpetas de herramientas o generadas: no tienen documentos de clase y pueden ser enormes
 PODAR = {'.git', 'node_modules', 'target', '.venv', 'venv', '__pycache__', 'library', 'obj', 'bin'}
 # Nombre que no dice qué es: un código largo (worksheet_524271) o sin ninguna palabra (12345)
@@ -87,7 +91,7 @@ def documentos(origen, tabla):
                 sub = os.path.relpath(raiz, ruta)
                 sub = '' if sub == '.' else '/'.join(normalizar(p) for p in sub.split(os.sep))
                 encontrados += [(os.path.join(raiz, a), sub, pista) for a in sorted(archivos)]
-    return [d for d in encontrados if os.path.splitext(d[0])[1].lower() in DOCUMENTOS], ignoradas
+    return [d for d in encontrados if os.path.splitext(d[0])[1].lower() in DOCUMENTOS | IMAGENES], ignoradas
 
 
 def clasificar(ruta, sub, pista, dev, tabla):
@@ -147,7 +151,7 @@ def ya_guardados(dev, tamanos):
             dirs[:] = [d for d in dirs if d.lower() not in PODAR]
             for a in archivos:
                 ruta = os.path.join(raiz, a)
-                if os.path.splitext(a)[1].lower() in DOCUMENTOS and os.path.getsize(ruta) in tamanos:
+                if os.path.splitext(a)[1].lower() in DOCUMENTOS | IMAGENES and os.path.getsize(ruta) in tamanos:
                     indice.setdefault(hash_de(ruta), ruta)
     return indice
 
@@ -167,6 +171,10 @@ def planificar(origen, dev, tabla):
     docs, ignoradas = documentos(origen, tabla)
     entradas = [clasificar(ruta, sub, pista, dev, tabla) for ruta, sub, pista in docs]
     marcar_ya_guardados(entradas, dev)
+    # Una imagen suelta suele ser una captura o un meme: nunca se clasifica. Solo se queda en el
+    # plan si ya está guardada en un repo, para poder mandarla a la Papelera como duplicado.
+    sueltas = {ruta for ruta, _, pista in docs if not pista and os.path.splitext(ruta)[1].lower() in IMAGENES}
+    entradas = [e for e in entradas if e['origen'] not in sueltas or e['estado'] == 'duplicado']
     revisar_destinos(entradas)
     return entradas, ignoradas
 
