@@ -9,7 +9,7 @@ Lleva `Tema 3 Hilos PSP.pdf` de Descargas a `C:\dev\programacion-servicios-y-pro
 
 Script: `../../scripts/clasificar.py`, con `python -I -X utf8` (`--help` explica estados y opciones). Los nombres siguen la regla de normalizar-nombres. Las asignaturas y sus palabras clave están en `asignaturas.json` de esta carpeta: si falta una asignatura o una palabra, se edita la tabla, no esta skill.
 
-Si el usuario descarga una UT entera en una subcarpeta de Descargas con nombre de asignatura y UT (`ut2 ingles`), ese nombre manda para todo lo de dentro. Las subcarpetas sin nombre de asignatura se ignoran. Un `.zip` no se descomprime: pide al usuario que lo extraiga en una carpeta así.
+Si el usuario descarga una UT entera en una subcarpeta de Descargas con nombre de asignatura y UT (`ut2 ingles`), ese nombre manda para todo lo de dentro, imágenes incluidas. Las subcarpetas sin nombre de asignatura se ignoran. Las imágenes sueltas nunca se clasifican; solo salen si ya están en un repo, como `duplicado`. Un `.zip` no se descomprime: pide al usuario que lo extraiga en una carpeta así.
 
 ## Pasos
 
