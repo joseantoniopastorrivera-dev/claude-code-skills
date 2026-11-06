@@ -1,0 +1,10 @@
+{
+ "data-access": ["acceso a datos", "ad", "jdbc", "ficheros", "hibernate", "jpa", "orm", "datastock"],
+ "programacion-servicios-y-procesos": ["psp", "procesos", "hilos", "threads", "sockets", "servicios"],
+ "programacion-multimedia-y-dispositivos-moviles": ["pmdm", "multimedia", "moviles", "unity", "android", "csharp"],
+ "Sistemas-Gestion-Empresarial": ["sge", "gestion empresarial", "odoo", "erp", "crm"],
+ "sostenibilidad-aplicada-sistema-productivo": ["sostenibilidad", "ods", "asg", "productivo"],
+ "itinerario-personal-para-la-empleabilidad-ii": ["ipe", "empleabilidad", "emprendimiento", "emprendedor", "plan de empresa"],
+ "cybersec2627": ["ciberseguridad", "cybersec", "cmo"],
+ "ingles-profesional": ["ingles", "english", "ingles profesional", "ingles tecnico"]
+}
