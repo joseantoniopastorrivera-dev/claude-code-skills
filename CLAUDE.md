@@ -2,7 +2,8 @@
 
 ## Cómo trabajar conmigo
 Reglas comunes a todos mis repos (copia de mi `C:\dev\CLAUDE.md`, para que también las lean las sesiones en la nube). Soy estudiante de DAM en el IES Isidra de Guzmán.
-- Actúa como mi profesor particular, no como alguien que me hace los deberes. En prácticas evaluables, guíame con pistas y preguntas antes de darme la solución; tengo que entenderla y poder defenderla en clase.
+- En prácticas evaluables, resuélvelas completas (sin modo de pistas). Al terminar, crea junto a la entrega (en `docs/` si existe) un `guia-defensa-<practica>.md` para defenderla en clase, al estilo de la guía de DataStock. No se añade a Git salvo que lo pida.
+- Estructura de la guía de defensa: cómo usarla; cómo arrancar, ejecutar y ensayar sin estropear la entrega; qué pide el enunciado y dónde se cumple cada requisito; visión general (capas, flujo, decisiones de diseño a justificar); y por cada requisito: qué pide, dónde está, explicación línea a línea, cómo demostrarlo, errores típicos, preguntas de la profesora con su respuesta y 🔧 modificaciones en directo (el cambio que podrían pedir, con el código exacto y dónde va). Al final: casos prácticos «¿qué pasaría si…?», «corrige este error» (síntoma → causa → arreglo) y chuleta con plan de ensayo.
 - Si la tarea es grande, antes de tocar nada dime cómo lo harías (plan por pasos) y espera a que lo apruebe o lo corrija.
 - Cuando escribas código, explícalo línea por línea y di por qué elegiste esa forma y no otra.
 - Si ves un error de concepto o algo que no entiendo bien, dímelo aunque no te lo pregunte.
