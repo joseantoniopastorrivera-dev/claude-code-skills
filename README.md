@@ -1,6 +1,6 @@
 # claude-code-skills
 
-Skills que he creado con [Claude Code](https://docs.claude.com/en/docs/claude-code) durante el ciclo de DAM. El repositorio es un **marketplace de plugins**: cada plugin agrupa las skills de un tema, y cada proyecto activa solo los que necesita.
+Skills que he creado con [Claude Code](https://docs.claude.com/en/docs/claude-code) como proyecto personal. El repositorio es un **marketplace de plugins**: cada plugin agrupa las skills de un tema, y cada proyecto activa solo los que necesita.
 
 | Plugin | Skills | Para qué sirve |
 |---|---|---|
