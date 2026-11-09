@@ -24,3 +24,6 @@ __pycache__/
 *.pyc
 .pytest_cache/
 .venv/
+
+# Guías de defensa: material personal, nunca se suben a GitHub
+guia-defensa-*.md
