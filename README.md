@@ -4,9 +4,12 @@ Skills que he creado con [Claude Code](https://docs.claude.com/en/docs/claude-co
 
 | Plugin | Skills | Para qué sirve |
 |---|---|---|
-| [`techno-library-organizer`](plugins/techno-library-organizer/) | `organizar-biblioteca-musical` | Limpiar una biblioteca musical de DJ: duplicados, descargas rotas y carpetas convertidas en playlists. Incluye la herramienta en Python con sus tests. |
 | [`desarrollo-por-fases`](plugins/desarrollo-por-fases/) | `preparar-fase`, `plan-pruebas-fase` | Arrancar cada fase de una hoja de ruta (rama, copia de seguridad, tests y plan aprobado) y cerrarla con un plan de pruebas imprimible. |
 | [`ordenar-archivos`](plugins/ordenar-archivos/) | `normalizar-nombres`, `clasificar-descargas` | Renombrar documentos y carpetas de uno o varios repos git a minúsculas con guiones, conservando el historial, y llevar los documentos descargados a la carpeta de su UT en el repo de cada asignatura. |
+
+## Skills de pago
+
+- [**Music Library Organizer**](plugins/music-library-organizer/): limpia y ordena una biblioteca musical de cualquier género (duplicados, descargas rotas y carpetas convertidas en playlists). Edición Lite gratis y Pro de pago, en inglés, español y neerlandés. Próximamente en [Agensi](https://agensi.io).
 
 ## Instalación
 
