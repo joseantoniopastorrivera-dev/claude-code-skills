@@ -27,3 +27,6 @@ __pycache__/
 
 # Guías de defensa: material personal, nunca se suben a GitHub
 guia-defensa-*.md
+
+# Ideas y skills privadas (norma: todo empieza siendo privado)
+ideas/

@@ -11,6 +11,13 @@ Skills que he creado con [Claude Code](https://docs.claude.com/en/docs/claude-co
 
 - [**Music Library Organizer**](plugins/music-library-organizer/): limpia y ordena una biblioteca musical de cualquier género (duplicados, descargas rotas y carpetas convertidas en playlists). Edición Lite gratis y Pro de pago, en inglés, español y neerlandés. Próximamente en [Agensi](https://agensi.io).
 
+## 🚧 En construcción
+
+Todavía no se pueden instalar. Cada enlace lleva a un README que explica lo que serán. Saldrán con edición Lite gratis y Pro de pago.
+
+- 🔐 [**gestor-contrasenas**](plugins/gestor-contrasenas/): genera, guarda y usa contraseñas con un gestor de verdad (Bitwarden), en Windows y Linux, sin que Claude llegue a ver el secreto.
+- 🧹 [**optimizar-ordenador**](plugins/optimizar-ordenador/): recupera espacio y mantiene el ordenador ordenado. Primero un informe de solo lectura, luego un plan que apruebas y nunca un borrado sin poder deshacerlo.
+
 ## Instalación
 
 En Claude Code:

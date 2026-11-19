@@ -12,3 +12,21 @@ Reglas comunes a todos mis repos (copia de mi `C:\dev\CLAUDE.md`, para que tambi
 - No subas binarios generados (`target/`, `*.class`, `__pycache__/`, `*.pyc`, `bin/`, `obj/`, `Library/` de Unity).
 - Nunca leas, muestres ni subas ficheros `.env`, tokens ni credenciales.
 - PDFs, .docx, .odt y .pptx son apuntes o enunciados: léelos solo si hacen falta para la tarea.
+
+## Normas de este repo
+- **Todas las skills empiezan siendo privadas**: solo para Claude y para mí. Su código no se publica (ni en GitHub ni en el portal de skills de Claude) hasta que estén listas para sacarse con versión Lite y Pro, y yo lo decida de forma explícita. Las ideas en `ideas/` también son privadas.
+- **Trabajamos siempre con la versión Pro (completa).** La Lite no se desarrolla aparte: cuando toque publicar, se saca recortando la Pro.
+- Mientras una skill no tenga versión Lite publicada, en GitHub solo puede haber un **README «en construcción»**: largo, con índice, emoticonos y esquemas en ASCII art, que explique lo que será. Nunca el código ni detalles internos sensibles.
+- **Plantilla de esos README**: [plugins/gestor-contrasenas/README.md](plugins/gestor-contrasenas/README.md) y [plugins/optimizar-ordenador/README.md](plugins/optimizar-ordenador/README.md). Estructura:
+  - aviso 🚧 arriba y abajo;
+  - índice con anclas;
+  - por qué existe (un caso real sin datos personales);
+  - cómo funciona, con esquemas en ASCII art;
+  - tabla de skills o modos;
+  - lo que nunca hará;
+  - plataformas;
+  - ediciones Lite/Pro en cajas anidadas;
+  - hoja de ruta con casillas;
+  - preguntas frecuentes;
+  - autor.
+- Mientras estén en construcción, esos plugins no se añaden a `marketplace.json`, pero sí a la sección «🚧 En construcción» del README principal.
