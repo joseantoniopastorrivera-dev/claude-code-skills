@@ -17,6 +17,12 @@
       "description": "Renombra documentos y carpetas de repos git a minúsculas con guiones y clasifica las descargas de clase en su asignatura.",
       "source": "./plugins/ordenar-archivos",
       "category": "productivity"
+    },
+    {
+      "name": "music-library-organizer",
+      "description": "Read-only health check of a music library: duplicates, broken downloads and wasted space (free Lite edition; the Pro edition is on Agensi).",
+      "source": "./plugins/music-library-organizer",
+      "category": "productivity"
     }
   ]
 }

@@ -1,63 +1,165 @@
 # Music Library Organizer
 
-**[Español](#español) · [English](#english)**
-
----
-
-## Español
-
-Skill para Claude Code (y otros agentes) que **limpia y ordena una biblioteca musical de cualquier género**, también de DJ. Quita los duplicados, detecta las descargas rotas y conserva **en qué listas estuvo cada canción**. Cada carpeta antigua se convierte en una playlist y en disco queda una sola copia de cada tema.
-
-### Resultado en una biblioteca real
-
-| | Antes | Después |
-|---|---|---|
-| Archivos de audio | 4.754 (157,6 GB) | **3.559 canciones únicas (126,6 GB)** |
-| Espacio recuperado | | **31,2 GB** (996 copias sobrantes) |
-| Descargas rotas detectadas | sin detectar | **199** (196 vacías + 3 a medias) |
-| Listas | 32 carpetas | **32 playlists `.m3u8`** con su orden original |
-
-### Cómo trabaja
-
-1. **Inventario** (solo lectura): lee la calidad real de cada archivo y marca los rotos y los que se descargaron a medias.
-2. **Duplicados** (solo lectura): reconoce la misma canción por el nombre, por el contenido del archivo y por la huella de audio del FLAC, aunque tenga otras etiquetas, y elige la mejor copia.
-3. **Organizar**: primero simula; después mueve a `Biblioteca/<Artista>/<Título> - <Artista>`, crea las playlists y lleva lo sobrante a una cuarentena. Nunca borra nada y todo se puede deshacer.
-
-### Ediciones
-
-- **Lite** (gratis): el informe de solo lectura (duplicados, descargas rotas y espacio desperdiciado).
-- **Pro** (de pago): además organiza la biblioteca, reconstruye las playlists y permite deshacer.
-
-En inglés, español y neerlandés. Disponible próximamente en [Agensi](https://agensi.io).
+**[English](#english) · [Español](#español)**
 
 ---
 
 ## English
 
-A skill for Claude Code (and other agents) that **cleans up and organizes a music library of any genre**, DJ libraries included. It removes duplicates, detects broken downloads and **keeps track of which playlists each track belonged to**. Every old folder becomes a playlist, and only one copy of each track is kept on disk.
+A skill for Claude Code (and other agents) that checks a **music library of any genre**, DJ libraries included. It finds duplicates and broken downloads and tells you how much space they waste. **It never moves or deletes a file.**
+
+### Two editions
+
+```
+                │ music-library-   │ music-library-
+                │ organizer        │ organizer-pro
+────────────────┼──────────────────┼─────────────────
+Price           │ Free             │ Paid (Agensi)
+Where           │ This repo        │ Agensi
+Inventory       │ Yes              │ Yes
+Broken files    │ Yes              │ Yes
+Duplicates      │ Yes              │ Yes
+Organize files  │ No               │ Yes
+Playlists .m3u8 │ No               │ Yes
+Undo            │ Not needed       │ Yes
+```
+
+The free edition (this plugin) only reads. The Pro edition, `music-library-organizer-pro`, also tidies the library up. It is coming soon to [Agensi](https://agensi.io).
+
+### How it works
+
+```
+[Inventory] → [Duplicates] → Report
+ read only     read only       │
+                               ▼
+            Pro only: [Dry run] → OK? ─ yes → [Organize]
+                                  │
+                                  no → nothing changes
+```
+
+The free edition stops at the report. Everything it writes goes to `<library>/_mlo/output/` as CSV files.
+
+### What the Pro edition does with your folders
+
+```
+Music/                       Library/
+├─ Techno 2019/              ├─ Artist A/
+│  ├─ track1.flac   ──────▶  │  └─ Track 1 - Artist A.flac
+│  └─ track1 (1).mp3 ─────▶  _Quarantine/  (extra copy)
+└─ Warm-up/                  Playlists/
+   └─ track1.flac            ├─ Techno 2019.m3u8
+                             └─ Warm-up.m3u8
+```
+
+One copy of each track stays on disk, and every old folder becomes a playlist. Nothing is deleted: extra copies go to `_Quarantine/` and everything can be undone.
 
 ### Results on a real library
 
-| | Before | After |
+| | Before | After (Pro) |
 |---|---|---|
 | Audio files | 4,754 (157.6 GB) | **3,559 unique tracks (126.6 GB)** |
 | Space recovered | | **31.2 GB** (996 redundant copies) |
 | Broken downloads detected | undetected | **199** (196 empty + 3 truncated) |
 | Playlists | 32 folders | **32 `.m3u8` playlists** in their original order |
 
-### How it works
+The free edition shows the same figures in its report; only the Pro edition applies them.
 
-1. **Inventory** (read only): reads the real quality of every file and flags broken and half-finished downloads.
-2. **Duplicates** (read only): recognizes the same track by name, by file content and by the FLAC audio fingerprint, even with different tags, and picks the best copy.
-3. **Organize**: dry run first; then moves tracks to `Library/<Artist>/<Title> - <Artist>`, writes the playlists and sends extras to a quarantine folder. Nothing is ever deleted and everything can be undone.
+### Install
 
-### Editions
+```
+/plugin marketplace add joseantoniopastorrivera-dev/claude-code-skills
+/plugin install music-library-organizer@claude-code-skills
+```
 
-- **Lite** (free): the read-only report (duplicates, broken downloads and wasted space).
-- **Pro** (paid): also organizes the library, rebuilds the playlists and supports undo.
+It needs Python 3.8+ and `pip install mutagen`. Then ask Claude something like "check my music library in D:\Music".
 
-In English, Spanish and Dutch. Coming soon on [Agensi](https://agensi.io).
+### Languages
+
+The skill works in English, Spanish and Dutch (`--lang en|es|nl`). Would you like another language? [Open an issue](https://github.com/joseantoniopastorrivera-dev/claude-code-skills/issues) with the language you need.
+
+### License
+
+Free to use, redistribution not allowed: see [LICENSE](LICENSE). This plugin does **not** use the MIT license of the rest of the repository. Versions 1.x, published earlier in this repository, remain MIT.
 
 ---
 
-**Autor / Author:** José Antonio Pastor Rivera
+## Español
+
+Skill para Claude Code (y otros agentes) que revisa una **biblioteca musical de cualquier género**, también de DJ. Encuentra los duplicados y las descargas rotas y te dice cuánto espacio desperdician. **Nunca mueve ni borra un archivo.**
+
+### Dos ediciones
+
+```
+                │ music-library-   │ music-library-
+                │ organizer        │ organizer-pro
+────────────────┼──────────────────┼─────────────────
+Precio          │ Gratis           │ De pago (Agensi)
+Dónde           │ Este repo        │ Agensi
+Inventario      │ Sí               │ Sí
+Archivos rotos  │ Sí               │ Sí
+Duplicados      │ Sí               │ Sí
+Ordenar         │ No               │ Sí
+Playlists .m3u8 │ No               │ Sí
+Deshacer        │ No hace falta    │ Sí
+```
+
+La edición gratuita (este plugin) solo lee. La edición Pro, `music-library-organizer-pro`, además ordena la biblioteca. Llegará pronto a [Agensi](https://agensi.io).
+
+### Cómo trabaja
+
+```
+[Inventario] → [Duplicados] → Informe
+ solo lectura   solo lectura     │
+                                 ▼
+          Solo Pro: [Simulación] → ¿Bien? ─ sí → [Ordenar]
+                                   │
+                                   no → no cambia nada
+```
+
+La edición gratuita se queda en el informe. Todo lo que escribe va a `<biblioteca>/_mlo/output/` en ficheros CSV.
+
+### Qué hace la edición Pro con tus carpetas
+
+```
+Musica/                      Biblioteca/
+├─ Techno 2019/              ├─ Artista A/
+│  ├─ tema1.flac    ──────▶  │  └─ Tema 1 - Artista A.flac
+│  └─ tema1 (1).mp3 ──────▶  _Cuarentena/  (copia sobrante)
+└─ Warm-up/                  Listas/
+   └─ tema1.flac             ├─ Techno 2019.m3u8
+                             └─ Warm-up.m3u8
+```
+
+En disco queda una sola copia de cada tema y cada carpeta antigua se convierte en una playlist. No se borra nada: las copias sobrantes van a `_Cuarentena/` (con `--lang es`) y todo se puede deshacer.
+
+### Resultado en una biblioteca real
+
+| | Antes | Después (Pro) |
+|---|---|---|
+| Archivos de audio | 4.754 (157,6 GB) | **3.559 canciones únicas (126,6 GB)** |
+| Espacio recuperado | | **31,2 GB** (996 copias sobrantes) |
+| Descargas rotas detectadas | sin detectar | **199** (196 vacías + 3 a medias) |
+| Listas | 32 carpetas | **32 playlists `.m3u8`** con su orden original |
+
+La edición gratuita enseña las mismas cifras en su informe; solo la Pro las aplica.
+
+### Instalación
+
+```
+/plugin marketplace add joseantoniopastorrivera-dev/claude-code-skills
+/plugin install music-library-organizer@claude-code-skills
+```
+
+Necesita Python 3.8+ y `pip install mutagen`. Después pide a Claude algo como «revisa mi biblioteca de música en D:\Musica».
+
+### Idiomas
+
+La skill funciona en inglés, español y neerlandés (`--lang en|es|nl`). ¿Quieres otro idioma? [Abre una issue](https://github.com/joseantoniopastorrivera-dev/claude-code-skills/issues) con el idioma que necesitas.
+
+### Licencia
+
+Uso gratuito, sin permiso de redistribución: ver [LICENSE](LICENSE). Este plugin **no** usa la licencia MIT del resto del repositorio. Las versiones 1.x, publicadas antes en este repositorio, siguen siendo MIT.
+
+---
+
+**Author / Autor:** José Antonio Pastor Rivera

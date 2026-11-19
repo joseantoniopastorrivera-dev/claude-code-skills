@@ -9,7 +9,7 @@ Skills que he creado con [Claude Code](https://docs.claude.com/en/docs/claude-co
 
 ## Skills de pago
 
-- [**Music Library Organizer**](plugins/music-library-organizer/): limpia y ordena una biblioteca musical de cualquier género (duplicados, descargas rotas y carpetas convertidas en playlists). Edición Lite gratis y Pro de pago, en inglés, español y neerlandés. Próximamente en [Agensi](https://agensi.io).
+- [**Music Library Organizer**](plugins/music-library-organizer/): revisa una biblioteca musical de cualquier género (duplicados y descargas rotas). La edición gratuita, `music-library-organizer`, se instala desde aquí y solo lee. La completa, `music-library-organizer-pro`, también ordena y crea las playlists, y llegará pronto a [Agensi](https://agensi.io). Tiene su propia licencia, no MIT.
 
 ## 🚧 En construcción
 
@@ -60,4 +60,4 @@ plugins/<plugin>/
 
 ## Licencia
 
-[MIT](LICENSE)
+[MIT](LICENSE), salvo los plugins que traen su propio `LICENSE` (como `music-library-organizer`).

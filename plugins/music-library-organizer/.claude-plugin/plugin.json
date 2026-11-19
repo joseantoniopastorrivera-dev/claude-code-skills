@@ -1,0 +1,10 @@
+{
+  "name": "music-library-organizer",
+  "version": "2.0.0",
+  "description": "Read-only health check of a music library of any genre: finds duplicates and broken downloads and reports the wasted space. The full edition, music-library-organizer-pro, is sold on Agensi.",
+  "author": {
+    "name": "José Antonio Pastor Rivera"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "keywords": ["music", "library", "duplicates", "dj", "flac"]
+}

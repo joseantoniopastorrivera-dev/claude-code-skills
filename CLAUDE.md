@@ -14,8 +14,11 @@ Reglas comunes a todos mis repos (copia de mi `C:\dev\CLAUDE.md`, para que tambi
 - PDFs, .docx, .odt y .pptx son apuntes o enunciados: léelos solo si hacen falta para la tarea.
 
 ## Normas de este repo
-- **Todas las skills empiezan siendo privadas**: solo para Claude y para mí. Su código no se publica (ni en este repo ni en el portal de skills de Claude) hasta que estén listas para sacarse con versión Lite y Pro, y yo lo decida de forma explícita. Las ideas y el código privado viven en el repo **privado** `claude-code-skills-private` (`C:\dev\claude-code-skills-private`, carpeta `ideas/`), nunca en este repo público.
+- **Todas las skills empiezan siendo privadas**: solo para Claude y para mí. Su código no se publica (ni en este repo ni en el portal de skills de Claude) hasta que estén listas para sacarse con versión Lite y Pro, y yo lo decida de forma explícita. Las ideas y el código privado viven en el repo **privado** `claude-code-skills-private` (en local, `C:\dev\claude-code-skills-privadas`; carpeta `ideas/`), nunca en este repo público.
 - **Trabajamos siempre con la versión Pro (completa).** La Lite no se desarrolla aparte: cuando toque publicar, se saca recortando la Pro.
+- **Nombres al publicar (también en los README):** la Lite gratuita se llama `<nombre-de-skill>` y la completa, `<nombre-de-skill>-pro`. En el repo privado la completa se llama solo `<nombre-de-skill>`. Al pasar una skill a este repo hay que revisar las dos versiones (qué entra en la Lite y qué queda solo en la Pro).
+- **Idioma:** las skills nuevas, solo en inglés (código y `SKILL.md`). Los README publicados van en inglés y debajo en español, y explican cómo pedir otro idioma (abriendo una issue). `music-library-organizer` se queda con sus tres idiomas.
+- **Licencia:** un plugin con licencia propia lleva su `LICENSE` en su carpeta y lo dice en su README; el resto del repo es MIT.
 - Mientras una skill no tenga versión Lite publicada, en GitHub solo puede haber un **README «en construcción»**: largo, con índice, emoticonos y esquemas en ASCII art, que explique lo que será. Nunca el código ni detalles internos sensibles.
 - **Plantilla de esos README**: [plugins/gestor-contrasenas/README.md](plugins/gestor-contrasenas/README.md) y [plugins/optimizar-ordenador/README.md](plugins/optimizar-ordenador/README.md). Estructura:
   - aviso 🚧 arriba y abajo;
