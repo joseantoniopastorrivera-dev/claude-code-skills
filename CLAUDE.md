@@ -37,6 +37,6 @@ Reglas comunes a todos mis repos (copia de mi `C:\dev\CLAUDE.md`, para que tambi
 ## Cerrar una skill
 Ninguna skill se da por terminada sin pasar por la skill del repo `/cerrar-skill` (`.claude/skills/cerrar-skill/SKILL.md`):
 - **Revisión en Linux 🐧:** si tiene sentido en Linux, qué cambia y si el código ya lo contempla. Las pruebas en la máquina virtual Linux del USB se apuntan como pendientes.
-- **Informe final** con el nombre de la skill en minúsculas con guiones (reglas de `normalizar-nombres`), en PDF, DOCX y ODT, más un PDF en inglés. Sigue la estructura de las prácticas de SGE: portada, índice con enlaces, índice de incidencias, apartados por fases sin repetir contenido, incidencias, conclusiones, uso de IA e iconos de lo hecho.
+- **Informe final** con el nombre de la skill en minúsculas con guiones (reglas de `normalize-names`, plugin `organize-files` del repo privado), en PDF, DOCX y ODT, más un PDF en inglés. Sigue la estructura de las prácticas de SGE: portada, índice con enlaces, índice de incidencias, apartados por fases sin repetir contenido, incidencias, conclusiones, uso de IA e iconos de lo hecho.
 - Con el PDF aprobado, se **completa el README** con lo que finalmente se ha hecho, respetando su formato.
 - Cada idea o skill lleva un apartado **«Preguntas de Claude»** con propuestas que decido yo.

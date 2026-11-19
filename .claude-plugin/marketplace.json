@@ -1,23 +1,11 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "claude-code-skills",
-  "description": "Marketplace personal de skills para Claude Code: desarrollar por fases y renombrar y clasificar documentos en repos git.",
+  "description": "Personal marketplace of Claude Code skills by José Antonio Pastor Rivera. Free editions; the full -pro editions are on Agensi.",
   "owner": {
     "name": "José Antonio Pastor Rivera"
   },
   "plugins": [
-    {
-      "name": "desarrollo-por-fases",
-      "description": "Arranca cada fase de una hoja de ruta y la cierra con un plan de pruebas imprimible.",
-      "source": "./plugins/desarrollo-por-fases",
-      "category": "development"
-    },
-    {
-      "name": "ordenar-archivos",
-      "description": "Renombra documentos y carpetas de repos git a minúsculas con guiones y clasifica las descargas de clase en su asignatura.",
-      "source": "./plugins/ordenar-archivos",
-      "category": "productivity"
-    },
     {
       "name": "music-library-organizer",
       "description": "Read-only health check of a music library: duplicates, broken downloads and wasted space (free Lite edition; the Pro edition is on Agensi).",

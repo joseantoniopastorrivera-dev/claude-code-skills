@@ -24,7 +24,7 @@ Antes de cerrar, responde por escrito:
 
 ## 3. Informe final 📄
 
-**Nombre:** el nombre de la skill en minúsculas con guiones, con las reglas de `normalizar-nombres` (plugin `ordenar-archivos`): `<nombre-skill>.pdf`, `.docx` y `.odt`, más `<nombre-skill>-en.pdf` en inglés. Van en `docs/informes/` dentro de la carpeta de la skill o del plugin.
+**Nombre:** el nombre de la skill en minúsculas con guiones, con las reglas de `normalize-names` (plugin `organize-files`, en el repo privado): `<nombre-skill>.pdf`, `.docx` y `.odt`, más `<nombre-skill>-en.pdf` en inglés. Van en `docs/informes/` dentro de la carpeta de la skill o del plugin.
 
 **Estructura:** la de las prácticas del usuario, que sirven de modelo (`C:\dev\Sistemas-Gestion-Empresarial`, carpetas `ut02-practica-odoo`, `-v2` y `ut03-practica-odoo-v3`):
 1. **Portada:** nombre de la skill, una línea de qué hace, autor (José Antonio Pastor Rivera), fecha y versión.
