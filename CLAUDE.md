@@ -14,7 +14,7 @@ Reglas comunes a todos mis repos (copia de mi `C:\dev\CLAUDE.md`, para que tambi
 - PDFs, .docx, .odt y .pptx son apuntes o enunciados: léelos solo si hacen falta para la tarea.
 
 ## Normas de este repo
-- **Todas las skills empiezan siendo privadas**: solo para Claude y para mí. Su código no se publica (ni en GitHub ni en el portal de skills de Claude) hasta que estén listas para sacarse con versión Lite y Pro, y yo lo decida de forma explícita. Las ideas en `ideas/` también son privadas.
+- **Todas las skills empiezan siendo privadas**: solo para Claude y para mí. Su código no se publica (ni en este repo ni en el portal de skills de Claude) hasta que estén listas para sacarse con versión Lite y Pro, y yo lo decida de forma explícita. Las ideas y el código privado viven en el repo **privado** `claude-code-skills-private` (`C:\dev\claude-code-skills-private`, carpeta `ideas/`), nunca en este repo público.
 - **Trabajamos siempre con la versión Pro (completa).** La Lite no se desarrolla aparte: cuando toque publicar, se saca recortando la Pro.
 - Mientras una skill no tenga versión Lite publicada, en GitHub solo puede haber un **README «en construcción»**: largo, con índice, emoticonos y esquemas en ASCII art, que explique lo que será. Nunca el código ni detalles internos sensibles.
 - **Plantilla de esos README**: [plugins/gestor-contrasenas/README.md](plugins/gestor-contrasenas/README.md) y [plugins/optimizar-ordenador/README.md](plugins/optimizar-ordenador/README.md). Estructura:
@@ -30,3 +30,10 @@ Reglas comunes a todos mis repos (copia de mi `C:\dev\CLAUDE.md`, para que tambi
   - preguntas frecuentes;
   - autor.
 - Mientras estén en construcción, esos plugins no se añaden a `marketplace.json`, pero sí a la sección «🚧 En construcción» del README principal.
+
+## Cerrar una skill
+Ninguna skill se da por terminada sin pasar por la skill del repo `/cerrar-skill` (`.claude/skills/cerrar-skill/SKILL.md`):
+- **Revisión en Linux 🐧:** si tiene sentido en Linux, qué cambia y si el código ya lo contempla. Las pruebas en la máquina virtual Linux del USB se apuntan como pendientes.
+- **Informe final** con el nombre de la skill en minúsculas con guiones (reglas de `normalizar-nombres`), en PDF, DOCX y ODT, más un PDF en inglés. Sigue la estructura de las prácticas de SGE: portada, índice con enlaces, índice de incidencias, apartados por fases sin repetir contenido, incidencias, conclusiones, uso de IA e iconos de lo hecho.
+- Con el PDF aprobado, se **completa el README** con lo que finalmente se ha hecho, respetando su formato.
+- Cada idea o skill lleva un apartado **«Preguntas de Claude»** con propuestas que decido yo.
