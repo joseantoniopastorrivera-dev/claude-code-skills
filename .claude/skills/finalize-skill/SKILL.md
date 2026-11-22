@@ -26,18 +26,25 @@ Before finalizing, answer in writing:
 
 **Name:** the skill's name in lowercase with hyphens, following the `normalize-names` rules (plugin `organize-files`, in the private repo): `<skill-name>.pdf`, `.docx` and `.odt`, plus `<skill-name>-en.pdf` in English. They go in `docs/informes/` inside the skill's or plugin's folder. The report is written in Spanish; only the `-en.pdf` is in English.
 
-**Structure:** the one of the user's practices, which are the model (`C:\dev\Sistemas-Gestion-Empresarial`, folders `ut02-practica-odoo`, `-v2` and `ut03-practica-odoo-v3`):
-1. **Cover:** skill name, one line of what it does, author (José Antonio Pastor Rivera), date and version.
-2. **Table of contents with links** that jump to each section (internal bookmarks, not only page numbers).
-3. **Incident index:** table with No. (I-01…), incident, section and status (Resuelta / No resuelta / Sin impacto).
-4. **Sections numbered by phase** of the work: idea, design, implementation, tests, Linux review… As many as needed, **without repeating content** between sections.
-5. **Incidents:** the same table, with cause and fix.
-6. **Conclusions and lessons learned**, as bullets.
-7. **Use of AI:** which tool was used, for what and the main prompts.
+**Structure:** the same for every skill. Every section carries its emoji **after** its title (`# Idea 💡`), so it shows the same way in the table of contents; drop a section only if it truly has nothing (say so in one line instead of leaving it empty), never reorder them.
+- **Cover:** skill name, one line of what it does, author (José Antonio Pastor Rivera), date and version.
+- **Table of contents with links** that jump to each section (internal bookmarks, not only page numbers).
+1. **Idea** 💡: where the skill comes from and what it is for (and what it is not).
+2. **Design** 🧩: flow (ASCII diagram), structure and the decisions taken.
+3. **Implementation** 🛠️: files, scripts and how they work.
+4. **Tests** ✅: automated tests, tests with real material and cold tests.
+5. **Incidents** 🐞: one table with No. (I-01…), incident, cause, fix and status (Resuelta / No resuelta / Sin impacto). The other sections cite them as **I-0N**; there is no second incident table.
+6. **Changes after testing** ✏️: what was rewritten because of the tests, before → after.
+7. **Integration with other skills** 🔗: which skills it calls or is called by, and why those.
+8. **Linux review** 🐧: step 1 of this checklist.
+9. **Lessons learned** 🎓: each one as a short paragraph that says what happened in this skill and what it teaches for the next one. Concrete, with the example; no slogans the reader has to decode.
+10. **Use of AI** 🤖: say that it was developed with **Claude Code** (Anthropic), with the model used, under the author's direction and review. List the tools and their use, and summarise the main instructions in formal, correct wording: never transcribe the user's prompts literally.
+11. **Proposed improvements** 🚀: the proposals of step 5, so they stay in the report.
+12. **References** 📚
 
-**Icons:** each section has a simple icon that sums up the work (🔍 analysis, 🧩 design, 🛠️ code, ✅ tests, 🐧 Linux, ✏️ renaming, 🧹 cleanup…). Draw them as small PNGs (with Pillow, or SVG converted to PNG), because OpenOffice may not render emojis in the PDF. Folder or flow diagrams go in ASCII art, inside a code block.
+Sections follow the order of the work **without repeating content** between them.
 
-**How to generate it** (tools already on the laptop; on a failure, note it here):
+**How to generate it:** preferably with the `styled-docs` skill (private repo), which does steps 1 to 3 below: `python <styled-docs>/scripts/build.py <report>.md --type assignment --set cover=true --no-save --out-dir docs/informes` and, for English, `--set language=en-US --formats pdf`. Keep the `.md` sources next to the reports so they can be regenerated. By hand (tools already on the laptop; on a failure, note it here):
 1. `python-docx` creates the `.docx`: table of contents with hyperlinks to bookmarks, tables and images. Run it with plain `python`, not `python -I` (Pillow and python-docx live in the user site-packages). Level-1 titles use a custom paragraph style, not `Heading 1`: OpenOffice puts `Heading 1` in its numbered outline and prints "2. 2. Design".
 2. OpenOffice 4 converts it with `scripts/aoo_convert.py` (in this skill's folder), run with OpenOffice's own Python. Never use `soffice --convert-to`: that is LibreOffice, and Apache OpenOffice opens a window and hangs.
    ```
@@ -53,9 +60,13 @@ Before generating it, show the user the proposed table of contents and wait for 
 
 Once the final PDF is approved, **complete** the skill's or plugin's README with what was finally done: what it does, how to use it, results and the Linux section. Keep its current format (sections, languages, tables); do not rewrite it from scratch. If there is none, create it following the repo's README rules. Add a link to the report.
 
-## 5. Claude's questions 💬
+## 5. Proposed improvements 🚀
 
-End with a short section «Preguntas de Claude» with 2 to 4 proposals of yours for the next version. The user decides whether to accept them.
+Propose 2 to 4 improvements of yours for the next version, each with what it changes and why. They go in the report (section 11) and are also listed in the chat. The user decides which ones to accept.
+
+## Versions
+
+Every closing that changes the skill gets a new version in `plugin.json` and on the cover: patch (0.1.0 → 0.1.1) for fixes and documentation only, minor (0.1.0 → 0.2.0) when the skill gains or changes behaviour.
 
 ## Not done here
 
