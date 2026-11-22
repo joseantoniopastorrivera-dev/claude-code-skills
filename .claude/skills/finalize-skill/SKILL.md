@@ -26,6 +26,8 @@ Before finalizing, answer in writing:
 
 **Name:** the skill's name in lowercase with hyphens, following the `normalize-names` rules (plugin `organize-files`, in the private repo): `<skill-name>.pdf`, `.docx` and `.odt`, plus `<skill-name>-en.pdf` in English. They go in `docs/informes/` inside the skill's or plugin's folder. The report is written in Spanish; only the `-en.pdf` is in English.
 
+**Latest report and history:** `docs/informes/` holds only the latest report (every format plus its `.md` sources). Every version is also archived in `docs/informes/historicos/`, renamed with its version, with dots turned into hyphens as `normalize-names` does: `<skill-name>-v0-1-0.pdf`, `.docx`, `.odt`, `.md` and `<skill-name>-v0-1-0-en.pdf`, `-en.md`. When a new version is closed, copy its files into `historicos/` as well; never overwrite or delete an older version there. History starts at the first report the skill had (0.1.0 when it exists).
+
 **Structure:** the same for every skill. Every section carries its emoji **after** its title (`# Idea 💡`), so it shows the same way in the table of contents; drop a section only if it truly has nothing (say so in one line instead of leaving it empty), never reorder them.
 - **Cover:** skill name, one line of what it does, author (José Antonio Pastor Rivera), date and version.
 - **Table of contents with links** that jump to each section (internal bookmarks, not only page numbers).
@@ -67,6 +69,10 @@ Propose 2 to 4 improvements of yours for the next version, each with what it cha
 ## Versions
 
 Every closing that changes the skill gets a new version in `plugin.json` and on the cover: patch (0.1.0 → 0.1.1) for fixes and documentation only, minor (0.1.0 → 0.2.0) when the skill gains or changes behaviour.
+
+## Commits
+
+When the user asks for commit and push, make **one commit per change**, each with its own message, and push after each one: the skill, its report, its README, a rule in CLAUDE.md… never everything in one mixed commit. That way the history stays ordered and every change can be found and reverted on its own.
 
 ## Not done here
 
