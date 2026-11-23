@@ -1,23 +1,26 @@
 ---
 name: finalize-skill
-description: Finalizes the development or refinement of a Claude Code skill - checks whether it works on Linux, verifies everything passes, generates the final report as a PDF in Spanish and a PDF in English and completes the README. Use it when the user says a skill is finished, asks to "finalize the skill", "close the skill" ("cerrar la skill"), for "the skill report", or before treating a skill as done.
+description: Finalizes the development or refinement of a Claude Code skill - checks whether it works on Linux and macOS, verifies everything passes, generates the final report as a PDF in Spanish and a PDF in English and completes the README. Use it when the user says a skill is finished, asks to "finalize the skill", "close the skill" ("cerrar la skill"), for "the skill report", or before treating a skill as done.
 ---
 
 # Finalize a skill
 
 Checklist that is **always** run before a skill is treated as finished, whether it lives in the public repo `claude-code-skills` or the private `claude-code-skills-private`. Show each step to the user and wait for their approval before going on. Talk to the user in their own language.
 
-## 1. Linux review 🐧
+## 1. Operating system review 🖥️
 
-Before finalizing, answer in writing:
-- Does the skill make sense on Linux? If not, say why in one line.
-- What changes? Paths, commands (`python3`), permissions (`sudo`), package manager (apt, snap, flatpak), task scheduler (systemd timers or cron) and console encoding.
-- Does the code already handle it? If not, propose the smallest change: one table per operating system and `platform.system()`, with a single logic.
-- If it needs testing on the Linux virtual machine on the USB drive, add it to the repo's `pendientes.md`.
+A skill has **one logic for every system**: never one edition per operating system. What differs (paths, commands, programs) goes in one table per system chosen with `platform.system()` (`Windows`, `Linux`, `Darwin` for macOS). This is how professional tools do it: one source, tested on the three systems; only compiled packages are shipped per system, and skills compile nothing.
+
+Before finalizing, answer in writing, for Linux and for macOS:
+- Does the skill make sense there? If not, say why in one line.
+- What changes? Linux: paths, `python3`, permissions (`sudo`), package manager (apt, snap, flatpak), scheduler (systemd timers or cron), trash (`gio trash`) and console encoding. macOS: `python3`, zsh, Homebrew, scheduler (`launchd`), trash (Finder through `osascript`), `~/Library`, APFS not telling capitals apart by default and the BSD versions of `sed` and `find`.
+- Does the code already handle it? If not, propose the smallest change: a new row in the system table, never a second copy of the logic.
+- The automated tests run on Linux and macOS in GitHub Actions (step 2). Manual tests on macOS need a real Mac (macOS may only run in a virtual machine on Apple hardware): note them in `pendientes.md` until there is one. Only what needs a desktop or installed programs (the trash, OpenOffice, a scheduler, a real library or folder) goes to the Linux virtual machine on the USB drive: add it to the repo's `pendientes.md`.
 
 ## 2. Checks ✅
 
 - Tests green (`python -m pytest`) if the skill has code. Code with no tests gets a few now.
+- Continuous integration (CI) green on the three systems: the repo's `.github/workflows/tests.yml` runs every skill's tests on Linux and Windows on each push, and on macOS when it is launched by hand (Actions > Tests > Run workflow), which is done once at every closing. A skill with tests that is not in the workflow gets its own step there, and its test dependencies go in `requirements-dev.txt`. Before closing, `gh run list --workflow tests.yml --limit 3` shows the last runs; the closing waits until the three systems are green, or says in the report why one is not.
 - The `SKILL.md` frontmatter is valid: `name` in lowercase with hyphens and a `description` that says what it does and when to use it.
 - No personal paths, credentials, tokens or real data.
 - If the skill is sold or shipped as a zip, the repo's `build.py` builds the zips without errors.
@@ -42,7 +45,7 @@ Before finalizing, answer in writing:
 5. **Incidents**: one table with No. (I-01…), incident, cause, fix and status (Resuelta / No resuelta / Sin impacto). The other sections cite them as **I-0N**; there is no second incident table.
 6. **Changes after testing**: what was rewritten because of the tests, before → after.
 7. **Integration with other skills**: which skills it calls or is called by, and why those.
-8. **Linux review**: step 1 of this checklist.
+8. **Operating system review** (in Spanish, «Revisión por sistema»): step 1 of this checklist, with the «Tested on» table of step 4.
 9. **Lessons learned**: each one as a short paragraph that says what happened in this skill and what it teaches for the next one. Concrete, with the example; no slogans the reader has to decode.
 10. **Use of AI**: say that it was developed with **Claude Code** (Anthropic), with the model used, under the author's direction and review. List the tools and their use, and summarise the main instructions in formal, correct wording: never transcribe the user's prompts literally.
 11. **Proposed improvements**: the proposals of step 5, so they stay in the report.
@@ -64,7 +67,7 @@ Before generating it, show the user the proposed table of contents and wait for 
 
 ## 4. README 📘
 
-Once the final PDF is approved, **complete** the skill's or plugin's README with what was finally done: what it does, how to use it, results and the Linux section. Keep its current format (sections, languages, tables); do not rewrite it from scratch. If there is none, create it following the repo's README rules. Add a link to the report.
+Once the final PDF is approved, **complete** the skill's or plugin's README with what was finally done: what it does, how to use it, results and a «Tested on» table: one row per system (Windows, Linux, macOS) saying how it was tested (laptop, CI, Linux virtual machine) and the result. Keep its current format (sections, languages, tables); do not rewrite it from scratch. If there is none, create it following the repo's README rules. Add a link to the report.
 
 ## 5. Proposed improvements 🚀
 
