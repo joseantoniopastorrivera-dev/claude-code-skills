@@ -73,6 +73,10 @@ The free edition shows the same figures in its report; only the Pro edition appl
 
 It needs Python 3.8+ and `pip install mutagen`. Then ask Claude something like "check my music library in D:\Music".
 
+### Linux
+
+It works the same on Linux: use `python3` and `pip install mutagen` (or your distribution's `python3-mutagen` package). A test on a Linux virtual machine is still pending.
+
 ### Languages
 
 The skill works in English, Spanish and Dutch (`--lang en|es|nl`). Would you like another language? [Open an issue](https://github.com/joseantoniopastorrivera-dev/claude-code-skills/issues) with the language you need.
@@ -151,6 +155,10 @@ La edición gratuita enseña las mismas cifras en su informe; solo la Pro las ap
 ```
 
 Necesita Python 3.8+ y `pip install mutagen`. Después pide a Claude algo como «revisa mi biblioteca de música en D:\Musica».
+
+### Linux
+
+Funciona igual en Linux: usa `python3` y `pip install mutagen` (o el paquete `python3-mutagen` de tu distribución). Queda pendiente una prueba en una máquina virtual Linux.
 
 ### Idiomas
 
