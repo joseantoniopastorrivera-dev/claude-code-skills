@@ -6,7 +6,7 @@ Repository skill that is always run before a skill is treated as finished, in th
 
 1. 🐧 **Linux review:** does the skill make sense on Linux, what changes and whether the code already handles it.
 2. ✅ **Checks:** tests, `SKILL.md` frontmatter, no personal data, zips.
-3. 📄 **Final report** in PDF, DOCX and ODT plus an English PDF, with the same 12 sections for every skill. The latest report stays in `docs/informes/` and every version is archived in `docs/informes/historicos/` (`<skill>-v0-1-0.pdf`…).
+3. 📄 **Final report** as a Spanish PDF and an English PDF, without emojis, with the same 12 sections for every skill. The latest report stays in `docs/informes/` and every version is archived in `docs/informes/historicos/` (`<skill>-v0-1-0.pdf`…).
 4. 📘 **README** completed with what was finally done.
 5. 🚀 **Proposed improvements** for the next version; the author decides.
 
@@ -32,7 +32,7 @@ Skill del repositorio que se pasa siempre antes de dar una skill por terminada, 
 
 1. 🐧 **Revisión Linux:** si tiene sentido en Linux, qué cambia y si el código ya lo contempla.
 2. ✅ **Comprobaciones:** tests, cabecera del `SKILL.md`, sin datos personales, zips.
-3. 📄 **Informe final** en PDF, DOCX y ODT más un PDF en inglés, con los mismos 12 apartados para todas las skills. El último informe se queda en `docs/informes/` y cada versión se archiva en `docs/informes/historicos/` (`<skill>-v0-1-0.pdf`…).
+3. 📄 **Informe final** en PDF en español y PDF en inglés, sin emojis, con los mismos 12 apartados para todas las skills. El último informe se queda en `docs/informes/` y cada versión se archiva en `docs/informes/historicos/` (`<skill>-v0-1-0.pdf`…).
 4. 📘 **README** completado con lo que finalmente se hizo.
 5. 🚀 **Propuestas de mejora** para la siguiente versión; decide el autor.
 

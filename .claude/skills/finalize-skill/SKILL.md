@@ -1,6 +1,6 @@
 ---
 name: finalize-skill
-description: Finalizes the development or refinement of a Claude Code skill - checks whether it works on Linux, verifies everything passes, generates the final report in PDF, DOCX and ODT (plus a PDF in English) and completes the README. Use it when the user says a skill is finished, asks to "finalize the skill", "close the skill" ("cerrar la skill"), for "the skill report", or before treating a skill as done.
+description: Finalizes the development or refinement of a Claude Code skill - checks whether it works on Linux, verifies everything passes, generates the final report as a PDF in Spanish and a PDF in English and completes the README. Use it when the user says a skill is finished, asks to "finalize the skill", "close the skill" ("cerrar la skill"), for "the skill report", or before treating a skill as done.
 ---
 
 # Finalize a skill
@@ -24,36 +24,40 @@ Before finalizing, answer in writing:
 
 ## 3. Final report 📄
 
-**Name:** the skill's name in lowercase with hyphens, following the `normalize-names` rules (plugin `organize-files`, in the private repo): `<skill-name>.pdf`, `.docx` and `.odt`, plus `<skill-name>-en.pdf` in English. They go in `docs/informes/` inside the skill's or plugin's folder. The report is written in Spanish; only the `-en.pdf` is in English.
+**Formats and name:** only two files, both PDF: `<skill-name>.pdf` in Spanish and `<skill-name>-en.pdf` in English, each next to its `.md` source. No DOCX or ODT. The name is the skill's name in lowercase with hyphens, following the `normalize-names` rules (plugin `organize-files`, in the private repo).
 
-**Latest report and history:** `docs/informes/` holds only the latest report (every format plus its `.md` sources). Every version is also archived in `docs/informes/historicos/`, renamed with its version, with dots turned into hyphens as `normalize-names` does: `<skill-name>-v0-1-0.pdf`, `.docx`, `.odt`, `.md` and `<skill-name>-v0-1-0-en.pdf`, `-en.md`. When a new version is closed, copy its files into `historicos/` as well; never overwrite or delete an older version there. History starts at the first report the skill had (0.1.0 when it exists).
+**Folders:** every skill has `docs/informes/` inside its own folder (the plugin's, or the skill's folder for a repository skill such as this one) and `docs/informes/historicos/` inside it. If either is missing, create it at this step.
 
-**Structure:** the same for every skill. Every section carries its emoji **after** its title (`# Idea 💡`), so it shows the same way in the table of contents; drop a section only if it truly has nothing (say so in one line instead of leaving it empty), never reorder them.
+**Latest report and history:** `docs/informes/` holds only the latest report: the two PDFs and their two `.md` sources. Every version is also archived in `historicos/`, renamed with its version, with dots turned into hyphens as `normalize-names` does: `<skill-name>-v0-1-0.pdf`, `.md`, `-en.pdf` and `-en.md`. When a new version is closed, copy its files into `historicos/` as well; never overwrite or delete an older version there (DOCX and ODT files from before this rule stay there). Any DOCX or ODT left in `docs/informes/` is removed. History starts at the first report the skill had (0.1.0 when it exists).
+
+**No emojis in the report:** not on the cover, the table of contents, the titles or the body. A report is a formal document, and OpenOffice cannot print colour emojis (they would have to go in as pictures). Emojis may stay in the skill's README and `SKILL.md`.
+
+**Structure:** the same for every skill; drop a section only if it truly has nothing (say so in one line instead of leaving it empty), never reorder them.
 - **Cover:** skill name, one line of what it does, author (José Antonio Pastor Rivera), date and version.
 - **Table of contents with links** that jump to each section (internal bookmarks, not only page numbers).
-1. **Idea** 💡: where the skill comes from and what it is for (and what it is not).
-2. **Design** 🧩: flow (ASCII diagram), structure and the decisions taken.
-3. **Implementation** 🛠️: files, scripts and how they work.
-4. **Tests** ✅: automated tests, tests with real material and cold tests.
-5. **Incidents** 🐞: one table with No. (I-01…), incident, cause, fix and status (Resuelta / No resuelta / Sin impacto). The other sections cite them as **I-0N**; there is no second incident table.
-6. **Changes after testing** ✏️: what was rewritten because of the tests, before → after.
-7. **Integration with other skills** 🔗: which skills it calls or is called by, and why those.
-8. **Linux review** 🐧: step 1 of this checklist.
-9. **Lessons learned** 🎓: each one as a short paragraph that says what happened in this skill and what it teaches for the next one. Concrete, with the example; no slogans the reader has to decode.
-10. **Use of AI** 🤖: say that it was developed with **Claude Code** (Anthropic), with the model used, under the author's direction and review. List the tools and their use, and summarise the main instructions in formal, correct wording: never transcribe the user's prompts literally.
-11. **Proposed improvements** 🚀: the proposals of step 5, so they stay in the report.
-12. **References** 📚
+1. **Idea**: where the skill comes from and what it is for (and what it is not).
+2. **Design**: flow (ASCII diagram), structure and the decisions taken.
+3. **Implementation**: files, scripts and how they work.
+4. **Tests**: automated tests, tests with real material and cold tests.
+5. **Incidents**: one table with No. (I-01…), incident, cause, fix and status (Resuelta / No resuelta / Sin impacto). The other sections cite them as **I-0N**; there is no second incident table.
+6. **Changes after testing**: what was rewritten because of the tests, before → after.
+7. **Integration with other skills**: which skills it calls or is called by, and why those.
+8. **Linux review**: step 1 of this checklist.
+9. **Lessons learned**: each one as a short paragraph that says what happened in this skill and what it teaches for the next one. Concrete, with the example; no slogans the reader has to decode.
+10. **Use of AI**: say that it was developed with **Claude Code** (Anthropic), with the model used, under the author's direction and review. List the tools and their use, and summarise the main instructions in formal, correct wording: never transcribe the user's prompts literally.
+11. **Proposed improvements**: the proposals of step 5, so they stay in the report.
+12. **References**
 
 Sections follow the order of the work **without repeating content** between them.
 
-**How to generate it:** preferably with the `styled-docs` skill (private repo), which does steps 1 to 3 below: `python <styled-docs>/scripts/build.py <report>.md --type assignment --set cover=true --no-save --out-dir docs/informes` and, for English, `--set language=en-US --formats pdf`. Keep the `.md` sources next to the reports so they can be regenerated. By hand (tools already on the laptop; on a failure, note it here):
-1. `python-docx` creates the `.docx`: table of contents with hyperlinks to bookmarks, tables and images. Run it with plain `python`, not `python -I` (Pillow and python-docx live in the user site-packages). Level-1 titles use a custom paragraph style, not `Heading 1`: OpenOffice puts `Heading 1` in its numbered outline and prints "2. 2. Design".
-2. OpenOffice 4 converts it with `scripts/aoo_convert.py` (in this skill's folder), run with OpenOffice's own Python. Never use `soffice --convert-to`: that is LibreOffice, and Apache OpenOffice opens a window and hangs.
+**How to generate it:** preferably with the `styled-docs` skill (private repo), which does steps 1 to 3 below: `python <styled-docs>/scripts/build.py <report>.md --type assignment --set cover=true --set forbid_emojis=true --formats pdf --no-save --out-dir docs/informes` and, for English, the same with `--set language=en-US` added. `forbid_emojis` makes the build warn about any emoji left; remove them before delivering. `styled-docs` still writes a DOCX on the way (OpenOffice turns it into the PDF) and deletes it when only the PDF is asked for. Keep the `.md` sources next to the reports so they can be regenerated. By hand (tools already on the laptop; on a failure, note it here):
+1. `python-docx` creates a temporary `.docx` (it is not delivered): table of contents with hyperlinks to bookmarks, tables and images. Run it with plain `python`, not `python -I` (Pillow and python-docx live in the user site-packages). Level-1 titles use a custom paragraph style, not `Heading 1`: OpenOffice puts `Heading 1` in its numbered outline and prints "2. 2. Design".
+2. OpenOffice 4 converts it to PDF with `scripts/aoo_convert.py` (in this skill's folder), run with OpenOffice's own Python. Never use `soffice --convert-to`: that is LibreOffice, and Apache OpenOffice opens a window and hangs. Delete the `.docx` afterwards.
    ```
-   "C:\Program Files (x86)\OpenOffice 4\program\python.exe" scripts\aoo_convert.py <file>.docx <file>.odt <file>.pdf
+   "C:\Program Files (x86)\OpenOffice 4\program\python.exe" scripts\aoo_convert.py <file>.docx <file>.pdf
    ```
    The script also restores the bookmark names, which OpenOffice renames to Bookmark, Bookmark1… on import (the table of contents links would otherwise lead nowhere).
-3. Check the PDF: every table of contents link has a destination, the images show and no accents are broken.
+3. Check the PDF: every table of contents link has a destination, the images show, no accents are broken and there are no emojis.
 4. Repeat with the English text only for `<skill-name>-en.pdf`.
 
 Before generating it, show the user the proposed table of contents and wait for their approval.
