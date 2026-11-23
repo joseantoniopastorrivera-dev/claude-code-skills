@@ -3,7 +3,7 @@ name: music-library-organizer
 description: Read-only health check of a music library of any genre (DJ libraries included). Detects broken or half-finished downloads and finds duplicates by name, file hash and FLAC audio fingerprint, then reports how much space the extra copies take. Moves and deletes nothing. Use when the user wants to know how many duplicates or broken files their music collection has.
 license: Free to use. Redistribution not allowed. See LICENSE.txt.
 metadata:
-  version: "2.0.0"
+  version: "2.0.1"
   author: José Antonio Pastor Rivera
 ---
 
