@@ -37,14 +37,9 @@ Reglas comunes a todos mis repos (copia de mi `C:\dev\CLAUDE.md`, para que tambi
 - Mientras estén en construcción, esos plugins no se añaden a `marketplace.json`, pero sí a la sección «🚧 En construcción» del README principal.
 
 ## Cerrar una skill
-Las skills nuevas se crean con `forge-skill` y ninguna se da por terminada sin pasar por `finalize-skill` (antes `cerrar-skill`). Las dos están en el plugin `skill-lifecycle` del repo privado (`C:\dev\claude-code-skills-private\skill-lifecycle\skills\`). `finalize-skill` hace:
-- **Revisión en Linux 🐧:** si tiene sentido en Linux, qué cambia y si el código ya lo contempla. Las pruebas en la máquina virtual Linux del USB se apuntan como pendientes.
-- **Informe final** con el nombre de la skill en minúsculas con guiones (reglas de `normalize-names`, plugin `organize-files` del repo privado), en PDF, DOCX y ODT, más un PDF en inglés. Todos los informes tienen el mismo índice, con su emoji detrás del título, también en el índice: portada, índice con enlaces, idea 💡, diseño 🧩, implementación 🛠️, pruebas ✅, incidencias 🐞 (una sola tabla con causa y solución), ajustes tras las pruebas ✏️, integración con otras skills 🔗, revisión Linux 🐧, lecciones aprendidas 🎓, uso de IA 🤖 (elaborado con Claude Code, encargos redactados de forma formal y nunca transcritos), propuestas de mejora 🚀 y referencias 📚.
-- **Último informe e históricos:** en `docs/informes/` solo está el último informe; cada versión se archiva también en `docs/informes/historicos/`, renombrada con su versión (`<skill>-v0-1-0.pdf`, `.docx`, `.odt`, `.md`, `-en.pdf`, `-en.md`), desde el primer informe. No se borra ni se pisa ninguna versión anterior.
-- **Commits:** uno por cambio (la skill, su informe, su README, una norma…), cada uno con su mensaje y con push después de cada uno; nunca todo mezclado en un commit.
-- Con el PDF aprobado, se **completa el README** con lo que finalmente se ha hecho, respetando su formato.
-- Cada idea o skill lleva propuestas de mejora de Claude que decido yo: en las ideas, un apartado **«Preguntas de Claude»**; en las skills cerradas, el apartado 🚀 del informe.
-- Cada cierre que cambia la skill sube la versión: parche (0.1.0 → 0.1.1) si solo arregla o documenta, menor (0.1.0 → 0.2.0) si la skill hace algo nuevo o distinto.
+Las skills nuevas se crean con `forge-skill` y ninguna se da por terminada sin pasar por `finalize-skill`, las dos del plugin `skill-lifecycle` del repo privado (`C:\dev\claude-code-skills-private\skill-lifecycle\skills\`). El procedimiento (revisión en Linux y macOS, CI, informe, históricos y versión) está en el `SKILL.md` de `finalize-skill`, que es la única fuente: no lo copies aquí.
+- Con el informe aprobado, se completa el README respetando su formato.
+- Cada idea o skill lleva propuestas de mejora de Claude que decido yo: en las ideas, un apartado «Preguntas de Claude»; en las skills cerradas, el apartado de propuestas de mejora del informe.
 
 ## Karpathy guidelines
 
